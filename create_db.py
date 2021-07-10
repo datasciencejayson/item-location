@@ -1,12 +1,13 @@
 import pandas as pd
 
+new_df = pd.read_excel('C:/Users/jbackes/Documents/personal/item-location/item_location.xlsx')
+item_dict = {}
+for i, row in new_df.iterrows():
+    item_dict[row['item']] = [row['item'],row['location']]
 
 
-k=input("Please input a key: ") 
-v=input("Plesse input a value: ") 
 
-
-item_dict = {'pi4': ['pi4','spare bedroom office desk'],'purple lamy':['purple lamy','spare bedroom office desk']}
+# item_dict = {'pi4': ['pi4','spare bedroom office desk'],'purple lamy':['purple lamy','spare bedroom office desk']}
 
 
 def make_df():
@@ -23,14 +24,17 @@ def enter_new_item():
     dict_entry()
     make_df()
     return make_df()
+def write_excel():
+    df.to_excel('C:/Users/jbackes/Documents/personal/item-location/item_location.xlsx',index=False)
 
-df.to_excel('C:/Users/jbackes/Documents/personal/item-location/item_location.xlsx')
-del item_dict['new']
+def delete_item():
+    del item_dict['new']
 
 df = enter_new_item()
 
-
 df = make_df()
+
+write_excel()
 
 df.index.names = ['item']
 
