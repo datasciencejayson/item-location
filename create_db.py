@@ -6,11 +6,31 @@ k=input("Please input a key: ")
 v=input("Plesse input a value: ") 
 
 
-data = {'pi4': ['pi4','spare bedroom office desk'],'purple lamy':['purple lamy','spare bedroom office desk']}
+item_dict = {'pi4': ['pi4','spare bedroom office desk'],'purple lamy':['purple lamy','spare bedroom office desk']}
 
 
+def make_df():
+    temp_df = pd.DataFrame.from_dict(item_dict, orient="index", columns=['item','location'])
+    return temp_df
 
-df = pd.DataFrame.from_dict(data, orient="index", columns=['item','location'])
+def dict_entry():
+    k=input("Please input a key: ") 
+    v=input("Plesse input a value: ") 
+    item_dict[k] = [k,v]
+
+
+def enter_new_item():
+    dict_entry()
+    make_df()
+    return make_df()
+
+df.to_excel('C:/Users/jbackes/Documents/personal/item-location/item_location.xlsx')
+del item_dict['new']
+
+df = enter_new_item()
+
+
+df = make_df()
 
 df.index.names = ['item']
 
